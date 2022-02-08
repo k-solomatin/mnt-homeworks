@@ -33,6 +33,9 @@
 # Решение.  
 
 1.  ![Ansible](ans1.png)  
-2.  ![Ansible](ans2.png)
+2.  ![Ansible](ans2.png)  
+3.  ![Ansible](ans3.png)  
+4.  ![Ansible](ans4.png)  
+5,6.  ![Ansible](ans56.png)  
 
 ---
