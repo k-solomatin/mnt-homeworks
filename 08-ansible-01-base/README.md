@@ -39,6 +39,6 @@
   Задача 5-6   ![Ansible](ans56.png)  
   Задача 7  ![Ansible](ans7.png)  
   Задача 8  ![Ansible](ans8.png)  
-  Задача 9  Нужен local
-  Задача 10-11  ![Ansible](ans9.png)
+  Задача 9  Нужен local  
+  Задача 10-11  ![Ansible](ans9.png)  
 ---
