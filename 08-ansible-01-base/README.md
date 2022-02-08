@@ -38,6 +38,6 @@
   Задача 4  ![Ansible](ans4.png)  
   Задача 5 и 6   ![Ansible](ans56.png)  
   Задача 7  ![Ansible](ans7.png)  
-
+  Задача 8  ![Ansible](ans8.png)  
 
 ---
