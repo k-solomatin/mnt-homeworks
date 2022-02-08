@@ -37,5 +37,6 @@
 3. Задача 3  ![Ansible](ans3.png)  
 4. Задача 4  ![Ansible](ans4.png)  
 5. Задача 5 и 6   ![Ansible](ans56.png)  
+7. Задача 7
 
 ---
