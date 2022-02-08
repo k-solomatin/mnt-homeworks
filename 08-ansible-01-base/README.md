@@ -32,10 +32,10 @@
 
 # Решение.  
 
-1.  ![Ansible](ans1.png)  
-2.  ![Ansible](ans2.png)  
-3.  ![Ansible](ans3.png)  
-4.  ![Ansible](ans4.png)  
-56. sd   ![Ansible](ans56.png)  
+1. Задача 1  ![Ansible](ans1.png)  
+2. Задача 2  ![Ansible](ans2.png)  
+3. Задача 3  ![Ansible](ans3.png)  
+4. Задача 4  ![Ansible](ans4.png)  
+5. Задача 5 и 6   ![Ansible](ans56.png)  
 
 ---
