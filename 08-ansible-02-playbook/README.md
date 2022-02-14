@@ -78,4 +78,9 @@
          src: templates/kib.sh.j2  
          dest: /etc/profile.d/kib.sh  
        tags: kibana  
+# Задание 5  
+
+       ~/DevOpsStudy/mnt-homeworks/08-ansible-02-playbook/playbook❯ ansible-lint site.yml -vvv  
+       Examining site.yml of type playbook  
+# Задание 6  
        
