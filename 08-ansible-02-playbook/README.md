@@ -90,3 +90,34 @@
        Examining site.yml of type playbook  
 
 # Задание 6  
+
+```  
+~/DevOpsStudy/mnt-homeworks/08-ansible-02-playbook/playbook❯ ansible-playbook -i inventory/prod.yml site.yml --check
+
+PLAY [Install Java] ****************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************
+ok: [elastic001]
+ok: [kibana001]
+
+TASK [Set facts for Java 8 vars] ***************************************************************************************************************
+ok: [elastic001]
+ok: [kibana001]
+
+TASK [Upload .tar.gz file containing binaries from local storage] ******************************************************************************
+changed: [kibana001]
+changed: [elastic001]
+
+TASK [Ensure installation dir exists] **********************************************************************************************************
+changed: [elastic001]
+changed: [kibana001]
+
+TASK [Extract java in the installation directory] **********************************************************************************************
+fatal: [elastic001]: FAILED! => {"changed": false, "msg": "dest '/opt/jdk/11.0.11' must be an existing dir"}
+fatal: [kibana001]: FAILED! => {"changed": false, "msg": "dest '/opt/jdk/11.0.11' must be an existing dir"}
+
+PLAY RECAP *************************************************************************************************************************************
+elastic001                 : ok=4    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+kibana001                  : ok=4    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+```
