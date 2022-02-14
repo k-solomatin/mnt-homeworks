@@ -126,7 +126,7 @@ kibana001                  : ok=4    changed=2    unreachable=0    failed=1    s
 
 ```
 
-21:08:47 alex@upc(0):~/devops-ansible/2$ ansible-playbook -i inventory/prod.yml site.yml --diff
+~/DevOpsStudy/mnt-homeworks/08-ansible-02-playbook/playbook❯ ansible-playbook -i inventory/prod.yml site.yml --diff
 
 PLAY [Install Java] ****************************************************************************************************************************
 
@@ -172,7 +172,7 @@ changed: [kibana001]
 
 TASK [Export environment variables] ************************************************************************************************************
 --- before
-+++ after: /home/alex/.ansible/tmp/ansible-local-221239khw7w2m_/tmp_hy3d13m/jdk.sh.j2
++++ after: /home/solomatinkirill/.ansible/tmp/ansible-local-221239khw7w2m_/tmp_hy3d13m/jdk.sh.j2
 @@ -0,0 +1,5 @@
 +# Warning: This file is Ansible Managed, manual changes will be overwritten on next playbook run.
 +#!/usr/bin/env bash
@@ -183,7 +183,7 @@ TASK [Export environment variables] ********************************************
 
 changed: [kibana001]
 --- before
-+++ after: /home/alex/.ansible/tmp/ansible-local-221239khw7w2m_/tmpgb0gs20t/jdk.sh.j2
++++ after: /home/solomatinkirill/.ansible/tmp/ansible-local-221239khw7w2m_/tmpgb0gs20t/jdk.sh.j2
 @@ -0,0 +1,5 @@
 +# Warning: This file is Ansible Managed, manual changes will be overwritten on next playbook run.
 +#!/usr/bin/env bash
@@ -219,7 +219,7 @@ changed: [elastic001]
 
 TASK [Set environment Elastic] *****************************************************************************************************************
 --- before
-+++ after: /home/alex/.ansible/tmp/ansible-local-221239khw7w2m_/tmpxfcyrgrw/elk.sh.j2
++++ after: /home/solomatinkirill/.ansible/tmp/ansible-local-221239khw7w2m_/tmpxfcyrgrw/elk.sh.j2
 @@ -0,0 +1,5 @@
 +# Warning: This file is Ansible Managed, manual changes will be overwritten on next playbook run.
 +#!/usr/bin/env bash
@@ -255,7 +255,7 @@ changed: [kibana001]
 
 TASK [Set environment Kibana] ******************************************************************************************************************
 --- before
-+++ after: /home/alex/.ansible/tmp/ansible-local-221239khw7w2m_/tmpq2uv5zf0/kib.sh.j2
++++ after: /home/solomatinkirill/.ansible/tmp/ansible-local-221239khw7w2m_/tmpq2uv5zf0/kib.sh.j2
 @@ -0,0 +1,5 @@
 +# Warning: This file is Ansible Managed, manual changes will be overwritten on next playbook run.
 +#!/usr/bin/env bash
@@ -270,6 +270,78 @@ PLAY RECAP *********************************************************************
 elastic001                 : ok=11   changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 kibana001                  : ok=11   changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
+
+
+```
+
+# Задача 8  
+
+```
+~/DevOpsStudy/mnt-homeworks/08-ansible-02-playbook/playbook❯ ansible-playbook -i inventory/prod.yml site.yml --diff
+
+PLAY [Install Java] ****************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************
+ok: [elastic001]
+ok: [kibana001]
+
+TASK [Set facts for Java 8 vars] ***************************************************************************************************************
+ok: [kibana001]
+ok: [elastic001]
+
+TASK [Upload .tar.gz file containing binaries from local storage] ******************************************************************************
+ok: [elastic001]
+ok: [kibana001]
+
+TASK [Ensure installation dir exists] **********************************************************************************************************
+ok: [elastic001]
+ok: [kibana001]
+
+TASK [Extract java in the installation directory] **********************************************************************************************
+skipping: [elastic001]
+skipping: [kibana001]
+
+TASK [Export environment variables] ************************************************************************************************************
+ok: [elastic001]
+ok: [kibana001]
+
+PLAY [Install Elasticsearch] *******************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************
+ok: [elastic001]
+
+TASK [Upload tar.gz Elasticsearch from remote URL] *********************************************************************************************
+ok: [elastic001]
+
+TASK [Create directrory for Elasticsearch] *****************************************************************************************************
+ok: [elastic001]
+
+TASK [Extract Elasticsearch in the installation directory] *************************************************************************************
+skipping: [elastic001]
+
+TASK [Set environment Elastic] *****************************************************************************************************************
+ok: [elastic001]
+
+PLAY [Install Kibana] **************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************
+ok: [kibana001]
+
+TASK [Upload tar.gz Kibana from remote URL] ****************************************************************************************************
+ok: [kibana001]
+
+TASK [Create directrory for Kibana (/opt/kibana/7.12.0)] ***************************************************************************************
+ok: [kibana001]
+
+TASK [Extract Kibana in the installation directory] ********************************************************************************************
+skipping: [kibana001]
+
+TASK [Set environment Kibana] ******************************************************************************************************************
+ok: [kibana001]
+
+PLAY RECAP *************************************************************************************************************************************
+elastic001                 : ok=9    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+kibana001                  : ok=9    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
 
 
 ```
