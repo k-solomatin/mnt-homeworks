@@ -29,7 +29,7 @@
 
 ---
 
-# Задание 1  
+# Задание 1
 
 ---  
      elasticsearch:  
@@ -41,4 +41,41 @@
          kibana001:  
            ansible_connection: docker  
 ---  
-# Задание 2  
+# Задание 4  
+- name: Install kibana  
+   hosts: kibana  
+   tasks:  
+     - name: Upload tar.gz kibana from remote URL  
+       get_url:  
+         url: "https://artifacts.elastic.co/downloads/kibana/kibana-{{ kibana_version }}-linux-x86_64.tar.gz"  
+         dest: "/tmp/kibana-{{ elastic_version }}-linux-x86_64.tar.gz"  
+         mode: 0755  
+         timeout: 60  
+         force: true  
+         validate_certs: false  
+       register: get_kibana  
+       until: get_kibana is succeeded  
+       tags: kibana  
+     - name: Create directrory for kibana  
+       file:  
+         state: directory  
+         path: "{{ kibana_home }}"  
+       tags: kibana  
+     - name: Extract Kibana in the installation directory  
+       #become: true  
+       unarchive:  
+         copy: false  
+         src: "/tmp/kibana-{{ kibana_version }}-linux-x86_64.tar.gz"  
+         dest: "{{ kibana_home }}"  
+         extra_opts: [--strip-components=1]  
+         creates: "{{ kibana_home }}/bin/kibana"  
+       tags:  
+         - skip_ansible_lint  
+         - kibana  
+     - name: Set environment Kibana  
+       #become: true  
+       template:  
+         src: templates/kib.sh.j2  
+         dest: /etc/profile.d/kib.sh  
+       tags: kibana  
+       
