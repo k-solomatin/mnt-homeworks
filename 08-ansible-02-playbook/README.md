@@ -121,3 +121,155 @@ elastic001                 : ok=4    changed=2    unreachable=0    failed=1    s
 kibana001                  : ok=4    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
 
 ```
+
+#Задание 7  
+
+```
+
+21:08:47 alex@upc(0):~/devops-ansible/2$ ansible-playbook -i inventory/prod.yml site.yml --diff
+
+PLAY [Install Java] ****************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************
+ok: [elastic001]
+ok: [kibana001]
+
+TASK [Set facts for Java 8 vars] ***************************************************************************************************************
+ok: [elastic001]
+ok: [kibana001]
+
+TASK [Upload .tar.gz file containing binaries from local storage] ******************************************************************************
+diff skipped: source file size is greater than 104448
+changed: [kibana001]
+diff skipped: source file size is greater than 104448
+changed: [elastic001]
+
+TASK [Ensure installation dir exists] **********************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/jdk/11.0.11",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [kibana001]
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/jdk/11.0.11",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [elastic001]
+
+TASK [Extract java in the installation directory] **********************************************************************************************
+changed: [elastic001]
+changed: [kibana001]
+
+TASK [Export environment variables] ************************************************************************************************************
+--- before
++++ after: /home/alex/.ansible/tmp/ansible-local-221239khw7w2m_/tmp_hy3d13m/jdk.sh.j2
+@@ -0,0 +1,5 @@
++# Warning: This file is Ansible Managed, manual changes will be overwritten on next playbook run.
++#!/usr/bin/env bash
++
++export JAVA_HOME=/opt/jdk/11.0.11
++export PATH=$PATH:$JAVA_HOME/bin
+\ No newline at end of file
+
+changed: [kibana001]
+--- before
++++ after: /home/alex/.ansible/tmp/ansible-local-221239khw7w2m_/tmpgb0gs20t/jdk.sh.j2
+@@ -0,0 +1,5 @@
++# Warning: This file is Ansible Managed, manual changes will be overwritten on next playbook run.
++#!/usr/bin/env bash
++
++export JAVA_HOME=/opt/jdk/11.0.11
++export PATH=$PATH:$JAVA_HOME/bin
+\ No newline at end of file
+
+changed: [elastic001]
+
+PLAY [Install Elasticsearch] *******************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************
+ok: [elastic001]
+
+TASK [Upload tar.gz Elasticsearch from remote URL] *********************************************************************************************
+changed: [elastic001]
+
+TASK [Create directrory for Elasticsearch] *****************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/elastic/7.10.1",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [elastic001]
+
+TASK [Extract Elasticsearch in the installation directory] *************************************************************************************
+changed: [elastic001]
+
+TASK [Set environment Elastic] *****************************************************************************************************************
+--- before
++++ after: /home/alex/.ansible/tmp/ansible-local-221239khw7w2m_/tmpxfcyrgrw/elk.sh.j2
+@@ -0,0 +1,5 @@
++# Warning: This file is Ansible Managed, manual changes will be overwritten on next playbook run.
++#!/usr/bin/env bash
++
++export ES_HOME=/opt/elastic/7.10.1
++export PATH=$PATH:$ES_HOME/bin
+\ No newline at end of file
+
+changed: [elastic001]
+
+PLAY [Install Kibana] **************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************
+ok: [kibana001]
+
+TASK [Upload tar.gz Kibana from remote URL] ****************************************************************************************************
+changed: [kibana001]
+
+TASK [Create directrory for Kibana (/opt/kibana/7.12.0)] ***************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/kibana/7.12.0",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [kibana001]
+
+TASK [Extract Kibana in the installation directory] ********************************************************************************************
+changed: [kibana001]
+
+TASK [Set environment Kibana] ******************************************************************************************************************
+--- before
++++ after: /home/alex/.ansible/tmp/ansible-local-221239khw7w2m_/tmpq2uv5zf0/kib.sh.j2
+@@ -0,0 +1,5 @@
++# Warning: This file is Ansible Managed, manual changes will be overwritten on next playbook run.
++#!/usr/bin/env bash
++
++export KIBANA_HOME=/opt/kibana/7.12.0
++export PATH=$PATH:$KIBANA_HOME/bin
+\ No newline at end of file
+
+changed: [kibana001]
+
+PLAY RECAP *************************************************************************************************************************************
+elastic001                 : ok=11   changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+kibana001                  : ok=11   changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+
+```
