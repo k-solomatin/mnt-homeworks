@@ -28,7 +28,7 @@
 - name: Install Kibana
   hosts: kibana
   handlers:
-    - name: restart kibana
+    - name: restart Kibana
       become: true
       service:
         name: kibana
@@ -40,14 +40,14 @@
         dest: "/tmp/kibana-{{ elk_stack_version }}-x86_64.rpm"
       register: download_kibana
       until: download_kibana is succeeded
-    - name: Install kibana
+    - name: Install Kibana
       become: true
       yum:
         name: "/tmp/kibana-{{ elk_stack_version }}-x86_64.rpm"
         state: present
-    # - name: Configure Kibana
-    #   become: true
-    #   template:
-    #     src: kibana.yml.j2
-    #     dest: /etc/kibana/kibana.yml
-    #   notify: restart Kibana
+    - name: Configure Kibana
+      become: true
+      template:
+        src: kibana.yml.j2
+        dest: /etc/kibana/kibana.yml
+      notify: restart Kibana
