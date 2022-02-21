@@ -52,7 +52,7 @@
         dest: /etc/kibana/kibana.yml
       notify: restart Kibana
 - name: Install filebeat
-  hosts: app
+  hosts: application-instance
   handlers:
     - name: restart filebeat
       become: true
@@ -79,19 +79,13 @@
         src: filebeat.yml.j2
         desc: /etc/filebeat/filebeat.yml
       notify: restart filebeat
-    - name: filebeat
-      become: true
-      template:
-        src: filebeat.yml.j2
-        dest: /etc/filebeat/filebeat.yml
-      notify: restart filebeat
     - name: Set filebeat systemwork
       become: true
       command:
         cmd: filebeat modules enable system
         chdir: /usr/share/filebeat/bin
       register: filebeat_modules
-      changed_when: filebeat_modules.stdout != 'Module system is allready enable'
+      changed_when: filebeat_modules.stdout != 'Module system is already enabled'
     - name: Load Kibana dashboard
       become: true
       command:
