@@ -1,9 +1,9 @@
 ---
   el:
-    host:
+    hosts:
       centos:
-        ansible_host: 51.250.108.190
+        ansible_host: 51.250.102.74
       ubuntu:
-        ansible_host: 51.250.99.195  
+        ansible_host: 51.250.96.111  
   vars:    
-    ansible_user: k_solomatin
+    ansible_user: solomatinkirill

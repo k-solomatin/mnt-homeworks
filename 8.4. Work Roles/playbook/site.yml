@@ -1,5 +1,5 @@
 ---
-- name: Assert elastikrole
+- name: Assert elasticrole
   hosts: all
   roles:
     - elasticsearch_role
