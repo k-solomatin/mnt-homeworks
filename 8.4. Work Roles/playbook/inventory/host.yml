@@ -1,0 +1,9 @@
+---
+  el:
+    host:
+      centos:
+        ansible_host: 51.250.108.190
+      ubuntu:
+        ansible_host: 51.250.99.195  
+  vars:    
+    ansible_user: k_solomatin
