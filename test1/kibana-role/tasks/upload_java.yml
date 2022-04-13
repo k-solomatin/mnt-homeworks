@@ -1,0 +1,8 @@
+---
+- name: Upload .tar.gz file containing binaries from local storage
+    copy:
+      src: "{{ java_oracle_jdk_package }}"
+      dest: "/tmp/jdk-{{ java_jdk_version }}.tar.gz"
+    register: download_java_binaries
+    until: download_java_binaries is succeeded
+    tags: java

@@ -1,0 +1,7 @@
+---
+- name: Configure Java
+  become: true
+  template:
+    src: jdk.sh.j2
+    dest: /etc/profile.d/jdk.sh
+  tags: java

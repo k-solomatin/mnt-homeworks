@@ -1,0 +1,34 @@
+---
+- name: "Download Filebeat's rpm"
+  get_url:
+    url: "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{{ filebeat_version }}-x86_64.rpm"
+    dest: "/tmp/filebeat-{{ filebeat_version }}-x86_64.rpm"
+  register: download_filebeat
+  until: download_filebeat is succeeded
+- name: Install Filebeat
+  become: true
+  yum:
+    name: "/tmp/filebeat-{{ filebeat_version }}-x86_64.rpm"
+    state: present
+- name: Configure Filebeat
+  become: true
+  template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+    mode: 0644
+  notify: restart Filebeat
+- name: Set Filebeat systemwork
+  become: true
+  command:
+    cmd: filebeat modules enable system
+    chdir: /usr/share/filebeat/bin
+  register: filebeat_modules
+  changed_when: filebeat_modules.stdout != 'Modules system ia alredy enabled'
+- name: Load Kibana Dashboard
+  become: true
+  command:
+    cmd: filebeat setup
+    chdir: /usr/share/filebeat/bin
+  register: filebeat_setup
+  changed_when: false
+  until: filebeat_setup is succeeded

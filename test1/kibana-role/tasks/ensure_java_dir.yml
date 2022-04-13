@@ -1,0 +1,6 @@
+---
+- name: Ensure installation dir exists
+    file:
+      state: directory
+      path: "{{ java_home }}"
+    tags: java

@@ -1,0 +1,4 @@
+- name: Set facts for Java 11 vars
+  set_fact:
+    java_home: "/opt/jdk/{{ java_jdk_version }}"
+  tags: java
