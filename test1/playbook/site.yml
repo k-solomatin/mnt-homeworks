@@ -1,0 +1,13 @@
+---
+- name: Assert Elasticsearch
+  hosts: elasticsearch
+  roles:
+    - elastic
+- name: Assert Kibana
+  hosts: kibana
+  roles:
+    - kibana
+- name: Assert Filebeat
+  hosts: filebeat
+  roles:
+    - filebeat
